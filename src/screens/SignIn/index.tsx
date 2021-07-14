@@ -10,7 +10,7 @@ import { styles } from './styles'
 
 import IllustrationImg from '../../assets/illustration.png'
 
-export default function Signin() {
+export function SignIn() {
 
     // const [text, setText] = useState('')
 
