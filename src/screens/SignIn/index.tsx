@@ -9,10 +9,15 @@ import {ButtonIcon} from '../../components/ButtonIcon'
 import { styles } from './styles'
 
 import IllustrationImg from '../../assets/illustration.png'
+import { useNavigation } from '@react-navigation/native';
 
 export function SignIn() {
 
-    // const [text, setText] = useState('')
+    const navigation = useNavigation()
+
+    function handleSignIn() {
+        navigation.navigate('Home')
+    }
 
     return (
         <View style={styles.container}>
@@ -35,7 +40,7 @@ export function SignIn() {
                 </Text>
                 <ButtonIcon 
                     title="Entrar com Discord" 
-                    activeOpacity={0.7}
+                    onPress={handleSignIn}
                 />
             </View>
         </View>
