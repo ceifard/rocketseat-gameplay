@@ -10,6 +10,7 @@ import { BorderlessButton } from 'react-native-gesture-handler';
 import { Fontisto } from "@expo/vector-icons";
 import { Background } from '../../components/Background';
 import { ListHeader } from '../../components/ListHeader';
+import { ButtonIcon } from '../../components/ButtonIcon';
 import { Header } from '../../components/Header';
 import { theme } from '../../global/styles/theme';
 
@@ -74,5 +75,9 @@ export function AppointmentDetails() {
       ItemSeparatorComponent={() => <ListDivider/>}
       style={styles.members}
     />
+
+    <View style={styles.footer}>
+      <ButtonIcon title="Entrar na partida"/>
+    </View>
   </Background>;
 }
