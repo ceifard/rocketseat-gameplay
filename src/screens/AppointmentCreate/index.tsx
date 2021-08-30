@@ -1,85 +1,146 @@
 import React, { useState } from 'react';
 import { RectButton } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
-import { 
-  Text, 
+import {
+  Text,
   View,
+  ScrollView,
+  Platform,
+  KeyboardAvoidingView
 } from 'react-native';
 import { Background } from '../../components/Background';
 import { CategorySelect } from '../../components/CategorySelect';
 import { Header } from '../../components/Header';
+import { Button } from '../../components/Button';
 import { SmallInput } from '../../components/SmallInput';
+import { TextArea } from '../../components/TextArea';
 import { GuildIcon } from '../../components/GuildIcon';
 import { theme } from '../../global/styles/theme';
 import { styles } from './style';
 
 export function AppointmentCreate() {
-  const [category, setCategory] = useState('')  
-  return <Background>
-    <Header
-      title="Agendar partida"
-    />
-    <Text style={[styles.label, {
-      marginLeft: 24,
-      marginTop: 36,
-      marginBottom: 18
-    }]}>
-      Categoria
-    </Text>
+  const [category, setCategory] = useState('')
+  return <KeyboardAvoidingView
+    behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+    style={styles.container}>
+    <ScrollView>
 
-    <CategorySelect
-      hasCheckBox
-      setCategory={setCategory}
-      categorySelected={category}
-    />
 
-    <View style={styles.form}>
-      <RectButton>
-        <View style={styles.select}>
-          {
-            // <View style={styles.image} />
-            <GuildIcon />
-          }
+      <Header
+        title="Agendar partida"
+      />
+      <Text style={[styles.label, {
+        marginLeft: 24,
+        marginTop: 36,
+        marginBottom: 18
+      }]}>
+        Categoria
+      </Text>
 
-          <View style={styles.selectBody}>
-            <Text style={styles.label}>
-              Selecione um servidor
-            </Text>
+      <CategorySelect
+        hasCheckBox
+        setCategory={setCategory}
+        categorySelected={category}
+      />
+
+      <View style={styles.form}>
+        <RectButton>
+          <View style={styles.select}>
+            {
+              // <View style={styles.image} />
+              <GuildIcon
+               />
+            }
+
+            <View style={styles.selectBody}>
+              <Text style={styles.label}>
+                Selecione um servidor
+              </Text>
+            </View>
 
             <Feather
-              name="chevron-right"
-              color={theme.colors.heading}
-              size={18}
-            />
-
+                name="chevron-right"
+                color={theme.colors.heading}
+                size={18}
+              />            
           </View>
-        </View>
-      </RectButton>
-      
-      <View style={styles.field}>
-        <Text style={styles.label}>
-          Dia e mês
-        </Text>
+        </RectButton>
 
-          <View style={styles.column}>
+        <View style={styles.field}>
 
-            <SmallInput 
-              maxLength={2}
-            />
+          <View>
 
-            <Text style={styles.divider}>
-              /
+            <Text style={styles.label}>
+              Dia e mês
             </Text>
 
-            <SmallInput 
-              maxLength={2}
-            />        
+            <View style={styles.column}>
+
+              <SmallInput
+                maxLength={2}
+              />
+
+              <Text style={styles.divider}>
+                /
+              </Text>
+
+              <SmallInput
+                maxLength={2}
+              />
+
+            </View>
 
           </View>
-          
-      </View>
-      
-    </View>
 
-  </Background>;
+          <View>
+            <Text style={styles.label}>
+              Hora e minuto
+            </Text>
+
+            <View style={styles.column}>
+
+              <SmallInput
+                maxLength={2}
+              />
+
+              <Text style={styles.divider}>
+                :
+              </Text>
+
+              <SmallInput
+                maxLength={2}
+              />
+
+            </View>
+
+          </View>
+
+        </View>
+
+        <View style={[styles.field, { marginBottom: 12 }]}>
+          <Text style={styles.label}>
+            Descrição
+          </Text>
+
+          <Text style={styles.caracteresLimit}>
+            Max 100 caracteres
+          </Text>
+        </View>
+
+        <TextArea
+          multiline
+          maxLength={100}
+          numberOfLines={5}
+          autoCorrect={false}
+        />
+
+        <View style={styles.footer}>
+            <Button
+              title="Agendar"
+            />
+        </View>
+
+      </View>
+    </ScrollView>
+  </KeyboardAvoidingView>;
 }

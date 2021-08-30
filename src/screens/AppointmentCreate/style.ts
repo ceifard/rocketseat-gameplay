@@ -8,33 +8,34 @@ export const styles = StyleSheet.create({
   label: {
     fontSize: 18,
     fontFamily: theme.fonts.title700,
-    color: theme.colors.heading
+    color: theme.colors.heading,    
   },
   form: {
     paddingHorizontal: 24,
     marginTop: 32
   },
   select: {
+    flexDirection: 'row',
+    width: '100%', 
     height: 68,
-    width: '100%',
     borderColor: theme.colors.secondary50,
     borderWidth: 1,
     borderRadius: 8,
-    flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center',    
     paddingRight: 25,
-    overflow: 'hidden'
+    overflow: 'hidden',    
   },
   selectBody: {
     flex: 1,
-    alignItems: 'center',
+    alignItems: 'center',    
   },
   image: {
     width: 64,
     height: 68,
-    backgroundColor: theme.colors.secondary50,
+    backgroundColor: theme.colors.secondary40,
+    borderColor: theme.colors.secondary50,
     borderWidth: 1,
-    borderRadius: 8,
+    borderRadius: 8,    
   },
   field: {
     width: '100%',
@@ -44,12 +45,21 @@ export const styles = StyleSheet.create({
   },
   column: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'center'
   },
   divider: {
     marginRight: 4,
-    fontSize: 18,
+    fontSize: 15,
+    fontFamily: theme.fonts.text500,
+    color: theme.colors.highlight 
+  },
+  caracteresLimit: {
     fontFamily: theme.fonts.text400,
+    fontSize: 13,
     color: theme.colors.highlight
+  },
+  footer: {
+    marginVertical: 20,
+    marginBottom: 56,
   }
 });

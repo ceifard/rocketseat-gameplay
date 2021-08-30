@@ -1,18 +1,21 @@
-import React from "react";
-import {
-    Image,
-} from 'react-native'
+import React from 'react';
+import { Image, View } from 'react-native';
 
-import { styles } from "./styles"
+import { styles } from './styles';
+import DiscordSvg from '../../assets/discord.svg';
 
-
-export function GuildIcon({ ...rest }) {
+export function GuildIcon() {
     const uri = 'https://img.icons8.com/fluent/452/discord-new-logo.png'
-    return(
-        <Image 
-            style={styles.image}
-            source={{ uri }}
-            resizeMode="cover"
-        />
+
+    return (
+        <View style={styles.container}>
+            {
+                <DiscordSvg
+                    width={40}
+                    height={40}
+                />
+            }
+        </View>
     )
+
 }
