@@ -1,5 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { 
+    Alert,
     Image,
     Text, 
     View, 
@@ -10,18 +11,18 @@ import { Background } from '../../components/Background';
 import { styles } from './styles'
 
 import IllustrationImg from '../../assets/illustration.png'
-import { useNavigation } from '@react-navigation/native';
 import { useAuth } from '../../hooks/auth';
 
 export function SignIn() {
 
-    const navigation = useNavigation()
+    const { user, signIn } = useAuth()
 
-    const {user} = useAuth()
-    console.log(user);
-
-    function handleSignIn() {
-        navigation.navigate('Home')
+    async function handleSignIn() {
+        try {
+            await signIn()
+        } catch (error) {
+            Alert.alert(error);
+        }
     }
 
     return (
