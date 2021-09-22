@@ -70,14 +70,12 @@ function AuthProvider({ children }: AuthProviderProps) {
                     firstName,
                     token: params.access_token
                 });
-                
-                setLoading(false);
-            } else {
-                setLoading(false);
             }
 
         } catch {
             throw new Error('Não foi possível autenticar')
+        } finally {
+            setLoading(false);
         }
     }
 

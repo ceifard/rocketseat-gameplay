@@ -56,7 +56,7 @@ export function AppointmentDetails() {
           Lendários
         </Text>
         <Text style={styles.subtitle}>
-          É hoje que vamos chegar ao challenger sem perder uam partida da md10
+          É hoje que vamos chegar ao challenger sem perder uma partida da md10
         </Text>
       </View>
     </ImageBackground>
@@ -72,7 +72,7 @@ export function AppointmentDetails() {
           data={item}
         />
       )}
-      ItemSeparatorComponent={() => <ListDivider/>}
+      ItemSeparatorComponent={() => <ListDivider isCentered/>}
       style={styles.members}
     />
 
