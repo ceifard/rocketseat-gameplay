@@ -5,7 +5,8 @@ import {
   ImageBackground,
   Text,
   View,
-
+  Share,
+  Platform
 } from 'react-native';
 import { BorderlessButton } from 'react-native-gesture-handler';
 import { Fontisto } from "@expo/vector-icons";
@@ -44,6 +45,17 @@ export function AppointmentDetails() {
   const route = useRoute();
   const { guildSelected } = route.params as Params;
 
+  function handleShareInvitation() {
+    const message = Platform.OS === 'ios' ? 
+    `Junte-se a ${guildSelected.guild.name}` :
+    widget.instant_invite;
+
+    Share.share({
+      message,
+      url: widget.instant_invite
+    })
+  }
+
   async function fetchGuildWidget() {
     try {
       const response = await api.get(`/guilds/${guildSelected.guild.id}/widget.json`)
@@ -63,7 +75,8 @@ export function AppointmentDetails() {
     <Header
       title="Detalhes"
       action={
-        <BorderlessButton>
+        guildSelected.guild.owner &&
+        <BorderlessButton onPress={handleShareInvitation}>
           <Fontisto
             name="share"
             size={24}
