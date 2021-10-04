@@ -25,6 +25,8 @@ import { AppointmentProps } from '../../components/Appointment';
 import { api } from '../../services/api';
 import { Load } from '../../components/Load';
 
+import * as Linking from 'expo-linking'
+
 type Params = {
   guildSelected: AppointmentProps
 }
@@ -46,14 +48,18 @@ export function AppointmentDetails() {
   const { guildSelected } = route.params as Params;
 
   function handleShareInvitation() {
-    const message = Platform.OS === 'ios' ? 
-    `Junte-se a ${guildSelected.guild.name}` :
-    widget.instant_invite;
+    const message = Platform.OS === 'ios' ?
+      `Junte-se a ${guildSelected.guild.name}` :
+      widget.instant_invite;
 
     Share.share({
       message,
       url: widget.instant_invite
     })
+  }
+
+  function handleOpenGuild() {
+    Linking.openURL(widget.instant_invite)
   }
 
   async function fetchGuildWidget() {
@@ -100,28 +106,34 @@ export function AppointmentDetails() {
     </ImageBackground>
 
     {
-      loading ? <Load/> :
-      <>
-      <ListHeader
-      title="Jogadores"
-      subtitle={`Total ${widget.members.length}`}
-      />
-      <FlatList
-        data={widget.members}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <Member
-            data={item}
+      loading ? <Load /> :
+        <>
+          <ListHeader
+            title="Jogadores"
+            subtitle={`Total ${widget.members.length}`}
           />
-        )}
-        ItemSeparatorComponent={() => <ListDivider isCentered />}
-        style={styles.members}
-      />
-      </>
+          <FlatList
+            data={widget.members}
+            keyExtractor={item => item.id}
+            renderItem={({ item }) => (
+              <Member
+                data={item}
+              />
+            )}
+            ItemSeparatorComponent={() => <ListDivider isCentered />}
+            style={styles.members}
+          />
+        </>
     }
 
-    <View style={styles.footer}>
-      <ButtonIcon title="Entrar na partida" />
-    </View>
+    {
+      guildSelected.guild.owner &&
+      <View style={styles.footer}>
+        <ButtonIcon
+          title="Entrar na partida"
+          onPress={handleOpenGuild}
+        />
+      </View>
+    }
   </Background>;
 }
