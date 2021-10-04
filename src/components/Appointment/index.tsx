@@ -47,7 +47,7 @@ export function Appointment({ data, ...rest }: Props) {
             </Text>
 
             <Text style={styles.category}>
-              { category.title }
+              { category ? category.title : 'N/A' }
             </Text>
           </View>
 

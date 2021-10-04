@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Feather } from '@expo/vector-icons';
 import { RectButton } from 'react-native-gesture-handler';
-import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { useNavigation } from '@react-navigation/native';
 import uuid from 'react-native-uuid';
 
 import {
@@ -31,7 +31,7 @@ import { Guilds } from '../Guilds';
 
 export function AppointmentCreate(){
   const [category, setCategory] = useState('');
-  const [openGuildsModal, setOpenGuildsModal] = useState(false);
+  const [openGuildsModa, setOpenGuildsModal] = useState(false);
   const [guild, setGuild] = useState<GuildProps>({} as GuildProps);
 
   const [day, setDay] = useState('');
@@ -106,14 +106,10 @@ export function AppointmentCreate(){
           <View style={styles.form}>
             <RectButton onPress={handleOpenGuilds}>
               <View style={styles.select}>
-                {/* {
+                {
                   guild.icon 
-                  // ? <GuildIcon guildId={guild.id} iconId={guild.icon} /> 
                   ? <GuildIcon guildId={guild.id} iconId={guild.icon} /> 
                   : <View style={styles.image} />
-                } */}
-                {
-                  guild.icon ? <GuildIcon guildId={guild.id} iconId={guild.icon} /> : <View style={styles.image} />
                 }
 
                 <View style={styles.selectBody}>
@@ -204,7 +200,7 @@ export function AppointmentCreate(){
         </ScrollView>
       </Background>
 
-      <ModalView visible={openGuildsModal} closeModal={handleCloseGuilds}>
+      <ModalView visible={openGuildsModa} closeModal={handleCloseGuilds}>
         <Guilds handleGuildSelect={handleGuildSelect}/>
       </ModalView>
       

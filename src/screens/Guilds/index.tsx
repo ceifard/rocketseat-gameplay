@@ -6,6 +6,7 @@ import { ListDivider } from '../../components/ListDivider';
 
 import { styles } from './styles';
 import { api } from '../../services/api';
+import { AxiosError } from 'axios';
 
 type Props = {
     handleGuildSelect: (guild: GuildProps) => void;
@@ -20,9 +21,14 @@ export function Guilds({ handleGuildSelect }: Props) {
     }, [])
 
     async function fetchGuilds() {
-        const response = await api.get('/users/@me/guilds');
-        setGuilds(response.data);
-        setLoading(false);
+        try {
+            const response = await api.get('/users/@me/guilds');
+            setGuilds(response.data);            
+        } catch (err: any) {
+            console.log(err.message);
+        } finally {
+            setLoading(false);
+        }
     }
 
     return <View style={styles.container}>
